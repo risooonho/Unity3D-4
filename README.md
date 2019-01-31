@@ -1,5 +1,6 @@
 # Project-Aftermath
-A survival game that I'm working on during my downtime. Currently being developed using Unity 3D. 
+A survival FPS developed using Unity 3D.
+www.unity3d.com
 
 **For Updates:**
-http://andrewmorseblog.blogspot.com
+http://morsecode.com
