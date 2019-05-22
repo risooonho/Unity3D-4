@@ -15,12 +15,8 @@ public class InventoryController : MonoBehaviour {
         // Toggle ON/OFF
         if (Input.GetKeyDown(KeyCode.I))
             isOn = !isOn;
-	// Update
-        // Check ON/OFF
-        if (isOn)
-            inventoryCanvas.SetActive(true);
-        else
-            inventoryCanvas.SetActive(false);
 		
+        // Check ON/OFF
+        if (isOn) ? inventoryCanvas.SetActive(true) :  inventoryCanvas.SetActive(false);	
     }
 }
