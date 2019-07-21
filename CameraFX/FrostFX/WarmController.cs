@@ -5,7 +5,6 @@ using UnityEngine;
 public class WarmController : MonoBehaviour
 {
     private GameObject player;
-    private GameObject frostZone;
     private FrostEffect playerScript;
     private const float coef = 0.1f;
     private bool detect;
@@ -17,7 +16,6 @@ public class WarmController : MonoBehaviour
     {
         this.player = GameObject.Find("FPSCamera");
         this.playerScript = player.GetComponent<FrostEffect>();
-        this.frostZone = GameObject.Find("WarmZone");
         this.playerScript.FrostAmount = 0f;
     }
 
