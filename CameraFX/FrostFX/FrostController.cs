@@ -11,6 +11,7 @@ public class FrostController : MonoBehaviour
     private bool detect = true;
 
     // TODO: Collision detection implementation
+    // Work on trigger events for game objects
 
     // Start is called before the first frame update
     void Start()
