@@ -41,7 +41,7 @@ public class WarmController : MonoBehaviour
         else
             detect = false;
     }
-    // Testing
+    // Testing Updates
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Camera&Controller")
