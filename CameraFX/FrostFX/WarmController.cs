@@ -26,7 +26,7 @@ public class WarmController : MonoBehaviour
 
             // TODO: Adjust later for testing
             // Lower bound for frost limit 
-            if (playerScript.FrostAmount < 0f)
+            if (playerScript.FrostAmount < 0.0f)
                 return;
 
             this.playerScript.FrostAmount -= coef * Time.deltaTime;    
