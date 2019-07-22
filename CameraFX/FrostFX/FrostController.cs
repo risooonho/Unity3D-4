@@ -9,6 +9,7 @@ public class FrostController : MonoBehaviour
     private FrostEffect playerScript;
     private const float coef = 0.1f;
     private bool detect = true;
+    // TODO: Updates for trigger events
 
     // TODO: Collision detection implementation
 
