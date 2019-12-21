@@ -6,9 +6,9 @@ using UnityEngine;
 public class SloMoController : MonoBehaviour
 {
     public static float timer = 10.0f;
-    public bool activationFlag;
-    public AudioClip startSound;
-    public AudioClip endSound;
+    public static bool activationFlag;
+    public static AudioClip startSound;
+    public static AudioClip endSound;
 
     // Update is called once per frame
     void Update()
