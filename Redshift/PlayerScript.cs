@@ -6,7 +6,15 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
-    
+
+    [SerializeField]
+    private GameObject _lazerPrefab;
+
+    [SerializeField]
+    private float _fireRate = 0.1f;
+
+    private float _canFire = -1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +25,13 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();   
-    }
+        CalculateMovement();
 
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        {
+            FireLaser();
+        }
+    }
 
     void CalculateMovement()
     {
@@ -30,6 +42,7 @@ public class PlayerScript : MonoBehaviour
 
         transform.Translate(direction * _speed * Time.deltaTime);
 
+        // Define Player Parameters
         // Check y-axis parameters
         if (transform.position.y >= 0)
         {
@@ -49,5 +62,11 @@ public class PlayerScript : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
+    }
+
+    void FireLaser()
+    { 
+            _canFire = Time.time + _fireRate; // Cooldown
+            Instantiate(_lazerPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);  
     }
 }
