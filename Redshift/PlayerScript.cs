@@ -18,11 +18,22 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private SpawnManager _spawnManager;
+
+    [SerializeField]
+    private bool _isTripleShotActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign positon of player
-        transform.position = new Vector3(0, 0, 0);    
+        transform.position = new Vector3(0, 0, 0);
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("Spawn Mananger is NULL");
+        }
     }
 
     // Update is called once per frame
@@ -68,9 +79,21 @@ public class PlayerScript : MonoBehaviour
     }
 
     void FireLaser()
-    { 
-            _canFire = Time.time + _fireRate; // Cooldown
-            Instantiate(_lazerPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);  
+    {
+        _canFire = Time.time + _fireRate; // Cooldown
+
+        if (_isTripleShotActive == true)
+        {
+            Instantiate(_lazerPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity); // Top laser
+            Instantiate(_lazerPrefab, transform.position + new Vector3(-0.75f, -0.3f, 0), Quaternion.identity); // Left laser
+            Instantiate(_lazerPrefab, transform.position + new Vector3(0.75f, -0.3f, 0), Quaternion.identity); // Right laser
+        }
+        else
+        {
+            Instantiate(_lazerPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+        }
+
+          
     }
 
     public void Damage()
@@ -79,7 +102,21 @@ public class PlayerScript : MonoBehaviour
 
         if (_lives <= 0)
         {
+            _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
+    }
+
+    public void TripleShotActive()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotPowerDownRoutine());
+
+    }
+
+    IEnumerator TripleShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
     }
 }
